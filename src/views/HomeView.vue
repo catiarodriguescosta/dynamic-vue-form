@@ -39,8 +39,9 @@ const currentSchema = computed(() => {
   return schemas[currentStep.value];
 });
 
-const nextStep = () => {
+const nextStep = (values:any) => {
   if (currentStep.value === totalNumberOfSteps) {
+    alert(JSON.stringify(values, null, 2));
     return;
   }
   currentStep.value++;
