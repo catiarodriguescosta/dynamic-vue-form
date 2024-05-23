@@ -2,7 +2,10 @@
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    
+    fontFamily: {
+      sans: ['Radio Canada Big', 'Roboto', 'sans-serif'],
+      serif: ['Playfair Display', 'serif'],
+    },
     extend: {
       colors: {
       'blue': '#1fb6ff',
@@ -15,10 +18,7 @@ export default {
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
     },
-    fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
-    },
+    
   },
   },
   plugins: [],

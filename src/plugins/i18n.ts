@@ -5,9 +5,6 @@ export const i18n = createI18n({
     fallbackLocale: 'en',
     messages: {
       en: {
-        message: {
-          hello: 'hello world'
-        },
         termsAndConditions:{
             title: 'Terms and conditions',
             content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dolor dolor, condimentum et posuere id, auctor sit amet purus. Sed sed libero vitae tellus placerat ullamcorper. Mauris lectus risus, fermentum quis risus vel, tempor mattis sapien. Quisque scelerisque quam non vestibulum varius. Integer auctor pulvinar quam nec pharetra. Mauris sapien massa, tristique vitae odio at, interdum molestie ante. Morbi cursus a erat at rutrum.'
