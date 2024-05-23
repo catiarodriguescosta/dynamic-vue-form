@@ -1,12 +1,15 @@
 <script setup lang="ts">
+import { ref,  computed } from 'vue';
+import { RouterLink } from 'vue-router'
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
-import { ref,  computed } from 'vue';
+
 
 import Button from '@/components/Button.vue';
 
 const yesterday = new Date()
 yesterday.setDate(yesterday.getDate()-1)
+
 
 // one schema per step
 const schemas = [
@@ -16,7 +19,7 @@ const schemas = [
   }),
   yup.object({
     name: yup.string().min(2).required(),
-    dateOfBirth: yup.date().default(new Date(yesterday)).max(new Date(yesterday), `Date of birth must be in the past`),
+    dateOfBirth: yup.date().default(new Date(yesterday)).max(new Date(yesterday), 'Date of birth must be in the past'),
   }),
   yup.object({
     choiceOfService: yup
@@ -58,52 +61,53 @@ const prevStep = () => {
       v-slot="{ handleSubmit, values }"
     >
       <template v-if="currentStep === 0">
-        <label for="email">Email</label>
+        <label for="email">{{ $t('serviceForm.email.label') }}</label>
         <Field name="email" id="email" type="email" />
         <ErrorMessage name="email" />
 
-        <label for="password">Password</label>
+        <label for="password">{{ $t('serviceForm.password.label') }}</label>
         <Field name="password" type="password" />
         <ErrorMessage name="password" />
       </template>
 
       <template v-if="currentStep === 1">
-        <label for="name">Name</label>
+        <label for="name">{{ $t('serviceForm.name.label') }}</label>
         <Field name="name" id="name" />
         <ErrorMessage name="name" />
         
 
-        <label for="dateOfBirth">Date of Birth</label>
+        <label for="dateOfBirth">{{ $t('serviceForm.dateOfBirth.label') }}</label>
         <Field name="dateOfBirth" type="date"/>
         <ErrorMessage name="dateOfBirth" />
 
       </template>
 
       <template v-if="currentStep === totalNumberOfSteps">
+        <label for="choiceOfService">{{ $t('serviceForm.choiceOfService.label') }}</label>
         <Field name="choiceOfService" as="select">
-          <option>Select a drink</option>
-          <option value="coffee">Coffee</option>
-          <option value="tea">Tea</option>
-          <option value="soda">Soda</option>
+          <option value="web_development">{{ $t('serviceForm.servicesOptions[0]') }}</option>
+          <option value="mobile_development">{{ $t('serviceForm.servicesOptions[1]') }}</option>
+          <option value="seo_services">{{ $t('serviceForm.servicesOptions[2]') }}</option>
+          <option value="other">{{ $t('serviceForm.servicesOptions[3]') }}</option>
         </Field>
         <ErrorMessage name="choiceOfService" />
 
-        <label for="terms">Agree to terms and conditions</label>
         <Field name="terms" type="checkbox" id="terms" :value="true" />
+        <label for="terms">{{ $t('serviceForm.termsAndConditionsCheck.label_part1') }} <RouterLink :to="$t('serviceForm.termsAndConditionsCheck.link')">{{ $t('serviceForm.termsAndConditionsCheck.label_part2') }}</RouterLink></label>
         <ErrorMessage name="terms" />
       </template>
 
       <!-- Controls -->
       <Button v-if="currentStep !== 0" type="button" @click="prevStep">
-        Previous
+        {{ $t('serviceForm.controls[0]') }}
       </Button>
-      <Button v-if="currentStep !== totalNumberOfSteps" type="submit" variant="primary">
-        Next
+      <Button v-if="currentStep !== totalNumberOfSteps" type="button" @click="nextStep" variant="primary">
+        {{ $t('serviceForm.controls[1]') }}
       </Button>
-      <Button v-if="currentStep === totalNumberOfSteps" type="submit" variant="primary">
-        Send
+      <Button v-else type="submit" variant="primary">
+        {{ $t('serviceForm.controls[2]') }}
       </Button>
-      
+
     </Form>
   </div>
 </template>
