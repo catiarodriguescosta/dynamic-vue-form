@@ -2,7 +2,9 @@
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    colors: {
+    
+    extend: {
+      colors: {
       'blue': '#1fb6ff',
       'purple': '#7e5bef',
       'pink': '#ff49db',
@@ -17,7 +19,7 @@ export default {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
     },
-    extend: {},
+  },
   },
   plugins: [],
 }

@@ -4,7 +4,3 @@
     <p>{{ $t('termsAndConditions.content') }}</p>
   </div>
 </template>
-
-<style>
-
-</style>
